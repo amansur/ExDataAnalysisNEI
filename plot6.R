@@ -18,6 +18,10 @@ baltimoreLAVehicleEmissionsSummary <- data.frame(
     emissions = tapply(baltimoreLAVehicleEmissions$Emissions, 
                        list("Year"=baltimoreLAVehicleEmissions$year, "Fips"=baltimoreLAVehicleEmissions$fips), sum))
 
+# normalize data to show % change
+baltimoreLAVehicleEmissionsSummary[,2] <- 100 * baltimoreLAVehicleEmissionsSummary[, 2] / baltimoreLAVehicleEmissionsSummary[1, 2] - 100
+baltimoreLAVehicleEmissionsSummary[,3] <- 100 * baltimoreLAVehicleEmissionsSummary[, 3] / baltimoreLAVehicleEmissionsSummary[1, 3] - 100
+
 # load reshape2 library
 library(reshape2)
 
@@ -36,10 +40,10 @@ library(ggplot2)
 # plot data
 ggplot(vehicleEmissions, aes(Year, Emissions)) + 
     facet_grid(. ~ City) +
-    geom_bar(stat = "identity") +
+    geom_line(aes(group = 1)) +
     xlab("Year") + 
-    ylab(expression("Emissions " * PM[2.5] * " in tons")) + 
-    ggtitle(expression(PM[2.5] * "Emissions from motor vehicle sources in Baltimore 1999 - 2008"))
+    ylab(expression("% change in " * PM[2.5] * " emissions from 1999")) + 
+    ggtitle(expression(PM[2.5] * " emissions from motor vehicle sources relative to 1999"))
 
 # save plot
 ggsave(filename = "plot6.png", width = 9, height = 6, units = "in", dpi = 100)

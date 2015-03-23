@@ -20,7 +20,7 @@ ggplot(baltimore, aes(factor(year), Emissions)) +
     geom_bar(stat = "identity") + 
     xlab("Year") + 
     ylab(expression("Emissions " * PM[2.5] * " in tons")) + 
-    ggtitle(expression(PM[2.5] * "Emissions in Baltimore 1999 - 2008 by type"))
+    ggtitle(expression(PM[2.5] * " Emissions in Baltimore 1999 - 2008 by source type"))
 
 # save plot
 ggsave(filename = "plot3.png", width = 9, height = 6, units = "in", dpi = 100)

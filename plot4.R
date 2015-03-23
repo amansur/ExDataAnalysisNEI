@@ -22,7 +22,7 @@ ggplot(coalEmissionsSummary, aes(year, emissions)) +
     geom_bar(stat = "identity") +
     xlab("Year") + 
     ylab(expression("Emissions " * PM[2.5] * " in tons")) + 
-    ggtitle(expression(PM[2.5] * "Coal combustion related emissions in the U.S. 1999 - 2008"))
+    ggtitle(expression(PM[2.5] * " Coal combustion related emissions in the U.S. 1999 - 2008"))
 
 # Save plot
 ggsave(filename = "plot4.png", width = 9, height = 6, units = "in", dpi = 100)
